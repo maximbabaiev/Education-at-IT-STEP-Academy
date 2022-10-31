@@ -1,0 +1,17 @@
+{
+  "Ivanov Ken": {
+    "Name": "Ivanov Ken",
+    "Age": "20",
+    "Work": "teacher"
+  },
+  "Sidorov Rob": {
+    "Name": "Sidorov Rob",
+    "Age": "40",
+    "Work": "Boss"
+  },
+  "Babaiev Bob": {
+    "Name": "Babaiev Bob",
+    "Age": "20",
+    "Work": "BigBoss"
+  }
+}
