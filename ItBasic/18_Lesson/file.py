@@ -1,8 +1,8 @@
 import os.path
 
 
-path = os.path.join("../Lesson_21/data_base", "test3.txt")
-math = os.path.join('../Lesson_21/data_base', 'test2.txt')
+path = os.path.join("../19_Lesson/data_base", "test3.txt")
+math = os.path.join('../19_Lesson/data_base', 'test2.txt')
 file1 = open(path, 'r')
 file2 = open(math, 'w')
 split_var = file1.read().split()
