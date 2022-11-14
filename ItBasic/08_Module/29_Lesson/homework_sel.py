@@ -8,11 +8,13 @@ driver = webdriver.Chrome(executable_path=r'C:\Users\AdminP\PycharmProjects\ItSt
 
 driver.get(url='https://www.marvel.com/comics?&options%5Boffset%5D=0&totalcount=12')
 
-first = driver.find_elements(By.CLASS_NAME, 'meta-title')
-second = driver.find_elements(By.CLASS_NAME, 'meta-creators')
+first = driver.find_elements(By.CLASS_NAME, 'row-item-text')
+# second = driver.find_elements(By.CLASS_NAME, 'meta-creators')
 
 with open('file.txt', 'w') as file:
-    file.write(f"{str(first.text)} {second.text}")
+    for i in first:
+        file.write(f"{i.text}")
+
 
 
 
