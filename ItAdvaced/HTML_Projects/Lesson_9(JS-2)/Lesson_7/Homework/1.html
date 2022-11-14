@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+
+
+<ul id="mylist">
+  <li>White </li>
+  <li>Silver </li>
+  <li>Dark Gray</li>
+  <li>Khaki </li>
+</ul>
+
+
+
+<script>
+
+
+
+  document.getElementById('mylist').addEventListener('click', function(event) {
+    if ('LI' !== event.target.tagName) return;
+    alert(event.target.innerText);
+  }, false);
+</script>
+</body>
+</html>

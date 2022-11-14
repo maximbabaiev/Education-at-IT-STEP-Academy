@@ -1,0 +1,21 @@
+footer{
+    display: flex;
+
+}
+li{
+    list-style: none;
+}
+p{
+    text-align: center;
+}
+.block1{
+    margin: 15px 20%;
+}
+.fb:hover{
+    background-image: url(images/fb.png);
+    z-index: 1
+
+
+
+
+}

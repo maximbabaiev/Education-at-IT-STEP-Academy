@@ -1,0 +1,19 @@
+.first{
+    padding-left: 100px;
+    background: #194f33;
+    color: white;
+    font: 20px
+    width: 95%
+}
+.second{
+    background: #2d9c71;
+    color: white;
+    margin-left: 0;
+    width: 100%
+}
+p{
+    padding-left: 40px
+}
+sup{
+    color: #1f4257;
+}

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #app {
+            width: 800px;
+            max-width: 90%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            margin-bottom: 50px;
+        }
+
+        .btn-groups {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .btn-groups > .btn {
+            width: 24%;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-action {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card-title.complete {
+            text-decoration: line-through;
+        }
+
+        #form-card{
+            display: none;
+        }
+
+        #form-card .show{
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="app">
+    <h1>Todo List</h1>
+
+    <div class="btn-groups">
+        <button class="waves-effect indigo btn">
+            <i class="material-icons left">create</i>
+            Add new
+        </button>
+
+        <button class="waves-effect cyan btn">
+            <i class="material-icons left">sort</i>
+            Sort by date
+        </button>
+
+        <button class="waves-effect deep-orange btn">
+            <i class="material-icons left">sort</i>
+            Sort by priority
+        </button>
+
+
+
+    </div>
+<div >
+
+    <form action="">
+        <div class="input-field">
+            <input placeholder="Enter title" id="title" type="text" class="validate">
+            <label for="title">Task Title</label>
+        </div>
+
+        <div class="input-field">
+            <input placeholder="Enter title" id="description" type="text" class="validate">
+            <label for="description">Task Description</label>
+        </div>
+
+        <div class="input-field">
+            <input placeholder="Enter title" id="text" type="text" class="validate">
+            <label for="text">Task Text</label>
+        </div>
+
+        <div class="input-field">
+            <input placeholder="Enter title" id="priority" type="text" class="validate">
+            <label for="priority">Task Priority</label>
+        </div>
+        <div class="btn-groups">
+            <button class="waves-effect red btn" type="button">
+                Cancel
+            </button>
+
+            <button class="waves-effect success  btn" type="submit">
+                <i class="material-icons left">add_circle</i>
+               Add
+            </button>
+
+
+        </div>
+    </form>
+</div>
+    <div id="task-container">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="card-title">Task Name #1</span>
+                    <span>12.09.2022</span>
+                </div>
+
+                <p>Very important task</p>
+
+                <p>Something needs to be done in this task</p>
+            </div>
+            <div class="card-action">
+                <button class="waves-effect green btn">
+                    <i class="material-icons left">check</i>
+                    Done
+                </button>
+                <button class="waves-effect red btn">
+                    <i class="material-icons left">delete</i>
+                    Remove
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let taskList = [
+        {
+            id: '1', // уникальный идентификатор
+            title: 'Task #1 Title', // название задачи
+            description: 'Task #1 Description', // подзаголовок задачи
+            text: 'Task #1 Text', // текст задачи
+            completeTo: new Date().toDateString(), // до какого числа задачу нужно сделать
+            compeleted: false, // выполнена задача или нет (true - выполнена, false - нет)
+            priority: 2
+        },
+        {
+            id: '2',
+            title: 'Task #2 Title',
+            description: 'Task #2 Description',
+            text: 'Task #2 Text',
+            completeTo: new Date().toDateString(),
+            compeleted: true,
+            priority: 1
+        },
+        {
+            id: '3',
+            title: 'Task #3 Title',
+            description: 'Task #3 Description',
+            text: 'Task #3 Text',
+            completeTo: new Date().toDateString(),
+            compeleted: false,
+            priority: 3
+        }
+    ]
+
+    function renderTask() {
+        let htmlForList = '';
+
+        taskList.forEach((task) => {
+            htmlForList += generateCard(task)
+        })
+
+        document.getElementById('task-container').innerHTML = htmlForList;
+    }
+
+    function generateCard(taskDataObj) {
+        return `
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <span class="card-title">${taskDataObj.title} ${getIcon(taskDataObj.priority)}</span>
+                        <span>${taskDataObj.completeTo}</span>
+                    </div>
+
+                    <p>${taskDataObj.description}</p>
+
+                    <p>${taskDataObj.text}</p>
+                </div>
+                <div class="card-action">
+                    <button class="waves-effect green btn" ${taskDataObj.compeleted ? 'disabled' : ''} onclick="checkTask(${taskDataObj.id})">
+                        <i class="material-icons left">check</i>
+                        Done
+                    </button>
+                    <button class="waves-effect red btn" onclick="removeTask(${taskDataObj.id})">
+                        <i class="material-icons left">delete</i>
+                        Remove
+                    </button>
+                </div>
+            </div>
+        `
+    }
+
+    function getIcon(priority) {
+        if (priority === 1) {
+            return '<i class="material-icons">local_fire_department</i>'
+        } else if (priority === 2) {
+            return '<i class="material-icons">sunny</i>'
+        }
+
+        return '<i class="material-icons">menu</i>';
+    }
+
+    function checkTask(taskId) {
+        taskList.map((task) => {
+            if (task.id == taskId) {
+                task.compeleted = true;
+            }
+
+            return task;
+        });
+
+        renderTask();
+    }
+
+    function removeTask(taskId) {
+        taskList = taskList.filter((task) => task.id != taskId);
+
+        renderTask();
+    }
+
+    function sortByPriority() {
+        console.log( taskList.filter((task) => task.priority === 3 || task.priority === 2) );
+    }
+
+    sortByPriority()
+
+    renderTask();
+
+    function visibleForm(){
+
+        let formCard = document.getElementById("form-card");
+
+        formCard.classList.toggle('show')
+
+    }
+
+</script>
+
+</body>
+
+</html>

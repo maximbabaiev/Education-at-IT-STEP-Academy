@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #app {
+            width: 800px;
+            max-width: 90%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            margin-bottom: 50px;
+        }
+
+        .btn-groups {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .btn-groups > .btn {
+            width: 24%;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-action {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        #form-card {
+            display: none;
+        }
+
+        #form-card.show {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="app">
+    <h1>Todo List</h1>
+
+    <div class="btn-groups">
+        <button class="waves-effect indigo btn" onclick="visibleForm()">
+            <i class="material-icons left">create</i>
+            Add new
+        </button>
+
+        <button class="waves-effect cyan btn" onclick="sortByDate()">
+            <i class="material-icons left">sort</i>
+            Sort by date
+        </button>
+
+        <button class="waves-effect deep-orange btn" onclick="sortByPriority()">
+            <i class="material-icons left">sort</i>
+            Sort by priority
+        </button>
+    </div>
+
+    <div class="card" id="form-card">
+        <div class="card-content">
+            <div class="card-header">
+                <span class="card-title">Add New Task</span>
+            </div>
+
+            <form id="frm1" onsubmit="sendFormData(event)">
+                <div class="input-field">
+                    <input placeholder="Enter title" id="title" name="title" pattern="(?=.*[a-z]).{1,}" type="text" class="validate" required>
+                    <label for="title">Task Title</label>
+                </div>
+
+                <div class="input-field">
+                    <input placeholder="Enter description" id="description" pattern="(?=.*[a-z]).{1,}" name="description" type="text" class="validate" required>
+                    <label for="description">Task Description</label>
+                </div>
+
+                <div class="input-field">
+                    <input placeholder="Enter text" id="text" name="text" pattern="(?=.*[a-z]).{1,}" type="text" class="validate" required>
+                    <label for="text">Task Text</label>
+                </div>
+
+                <div class="input-field">
+                    <input placeholder="Enter priority" id="priority" name="priority" type="number" max="3" min="1" class="validate" required>
+
+                    <label for="priority">Task Priority</label>
+                </div>
+
+                <div class="input-field">
+
+                    <input placeholder="Enter complete to date" id="completeTo" name="completeTo" type="date" class="validate" required>
+                    <label for="completeTo">Task Complete To</label>
+                </div>
+
+
+                <div class="btn-groups">
+                    <button class="waves-effect red btn" type="reset" onclick="visibleForm()">
+                        Cancel
+                    </button>
+
+                    <button class="waves-effect success btn" id="del" type="submit" onclick="sendFormData()">
+                        <i class="material-icons left">add_circle</i>
+                        Add
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div id="task-container">
+        <div class="card">
+            <div class="card-content">
+                <div class="card-header">
+                    <span class="card-title">Task Name #1</span>
+                    <span>12.09.2022</span>
+                </div>
+
+                <p>Very important task</p>
+
+                <p>Something needs to be done in this task</p>
+            </div>
+            <div class="card-action">
+                <button class="waves-effect green btn">
+                    <i class="material-icons left">check</i>
+                    Done
+                </button>
+                <button class="waves-effect red btn">
+                    <i class="material-icons left">delete</i>
+                    Remove
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    let taskList = [
+        {
+            id: '1', // уникальный идентификатор
+            title: 'Task #1 Title', // название задачи
+            description: 'Task #1 Description', // подзаголовок задачи
+            text: 'Task #1 Text', // текст задачи
+            completeTo: new Date('2022-09-10').toDateString(), // до какого числа задачу нужно сделать
+            compeleted: false, // выполнена задача или нет (true - выполнена, false - нет)
+            priority: 2
+        },
+        {
+            id: '2',
+            title: 'Task #2 Title',
+            description: 'Task #2 Description',
+            text: 'Task #2 Text',
+            completeTo: new Date('2022-09-09').toDateString(),
+            compeleted: true,
+            priority: 1
+        },
+        {
+            id: '3',
+            title: 'Task #3 Title',
+            description: 'Task #3 Description',
+            text: 'Task #3 Text',
+            completeTo: new Date('2022-09-07').toDateString(),
+            compeleted: false,
+            priority: 3
+        }
+    ]
+
+    function renderTask() {
+        let htmlForList = '';
+
+        taskList.forEach((task) => {
+            htmlForList += generateCard(task)
+        })
+
+        document.getElementById('task-container').innerHTML = htmlForList;
+    }
+
+    function generateCard(taskDataObj) {
+        return `
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-header">
+                        <span class="card-title">${taskDataObj.title} ${getIcon(taskDataObj.priority)}</span>
+                        <span>${taskDataObj.completeTo}</span>
+                    </div>
+
+                    <p>${taskDataObj.description}</p>
+
+                    <p>${taskDataObj.text}</p>
+                </div>
+                <div class="card-action">
+                    <button class="waves-effect green btn" ${taskDataObj.compeleted ? 'disabled' : ''} onclick="checkTask(${taskDataObj.id})">
+                        <i class="material-icons left">check</i>
+                        Done
+                    </button>
+                    <button class="waves-effect red btn" onclick="removeTask(${taskDataObj.id})">
+                        <i class="material-icons left">delete</i>
+                        Remove
+                    </button>
+                </div>
+            </div>
+        `
+    }
+
+    function getIcon(priority) {
+        if (priority === 1) {
+            return '<i class="material-icons">local_fire_department</i>'
+        } else if (priority === 2) {
+            return '<i class="material-icons">sunny</i>'
+        }
+
+        return '<i class="material-icons">menu</i>';
+    }
+
+    function checkTask(taskId) {
+        taskList.map((task) => {
+            if (task.id == taskId) {
+                task.compeleted = true;
+            }
+
+            return task;
+        });
+
+        renderTask();
+    }
+
+    function removeTask(taskId) {
+        taskList = taskList.filter((task) => task.id != taskId);
+
+        renderTask();
+    }
+
+    function sortByPriority(){
+        taskList.sort((a, b) => a.priority > b.priority ? 1:-1);
+
+        renderTask()
+
+
+    }
+
+    function sortByDate(){
+
+        taskList.sort((a, b) => a.completeTo > b.completeTo ? 1:-1);
+
+        renderTask()
+
+    }
+
+    function visibleForm() {
+        let formCard = document.getElementById('form-card');
+
+        formCard.classList.toggle('show');
+
+    }
+
+
+
+    renderTask();
+
+    function sendFormData(event){
+
+        event.preventDefault()
+
+
+
+        let newTask = {
+
+            id: Math.floor(Math.random()* 10000),
+            title: event.target.elements.title.value,
+            description: event.target.elements.description.value,
+            text: event.target.elements.text.value,
+            completeTo: new Date(event.target.elements.completeTo.value).toDateString(),
+            compeleted: false,
+            priority: event.target.elements.priority.value
+
+        }
+        taskList.push(newTask);
+        document.getElementById("frm1").reset();
+        visibleForm()
+        renderTask()
+        sortByDate()
+        sortByPriority()
+
+
+
+        console.dir(event.target.elements.title.value)
+        console.dir(event.target.elements.description.value)
+        console.dir(event.target.elements.text.value)
+        console.dir(event.target.elements.priority.value)
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // const  titleInput = document.getElementById("title");
+    // const  descriptionInput = document.getElementById("description");
+    // const  textInput = document.getElementById("text");
+    // const  priorityInput = document.getElementById("priority");
+    // // const  completeToInput = document.getElementById("title");
+    //
+    //
+    // titleInput.addEventListener('keydown', (event) => {
+    //     if(event.target.value){
+    //         titleValid = true;
+    //     }
+    //     else {
+    //         titleValid = false
+    //     }
+    // })
+    // function disbledFormSubmit(){
+    //     let submitBtn = document.getElementById('submit-btn')
+    // }
+</script>
+
+</body>
+
+</html>

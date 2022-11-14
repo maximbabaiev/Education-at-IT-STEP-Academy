@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+<script type="application/javascript">
+async function test(){
+    console.log("aaaaaaaa")
+    let res = await fetch("https://jsonplaceholder.typicode.com/posts");
+    let result = await res.json();
+    return result
+}
+
+console.log(test())
+
+</script>
+<script type="application/javascript">
+
+
+fetch("https://jsonplaceholder.typicode.com/todos")
+    .then((respo) =>{
+        return respo.json();
+    } )
+    .then((add) =>{
+        console.log(add)
+    })
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</body>
+</html>

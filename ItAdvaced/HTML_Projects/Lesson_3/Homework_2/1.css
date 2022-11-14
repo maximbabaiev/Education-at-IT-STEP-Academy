@@ -1,0 +1,24 @@
+.first{
+    background: #9ab2db;
+    list-style-image: url("unc.png");
+}
+li:after {
+    content:"*";
+    color: red;
+    margin: 50px
+}
+li{
+    padding: 25px
+}
+.second{
+    background: #bfcade;
+    list-style-image: url("chec.png");
+    text-decoration: line-through
+}
+.third{
+    background: #1f52ad;
+    list-style-image: url("chec.png");
+}
+ul{
+    font-size: 30px
+}

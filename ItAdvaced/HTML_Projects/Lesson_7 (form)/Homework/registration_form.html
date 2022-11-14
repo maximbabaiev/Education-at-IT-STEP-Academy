@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>registration form</title>
+    <link href="registration_form.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="wrap">
+    <div class="header">
+        <h3>Registration form</h3>
+        <form method="post" class="register-form" id="register-form">
+            <div>
+                    <input type="text" name="name" id="name" placeholder="Username">
+            </div>
+            <div>
+                    <input type="email" name="email" id="email" placeholder="Email address">
+            </div>
+            <div>
+                <label  for="pass">
+                    <i class="zmdi zmdi-lock"></i>
+                </label>
+                    <input type="password" name="pass" id="pass" placeholder="Password">
+                <label  for="re-pass">
+                </label>
+                    <input type="password" name="re_pass" id="re-pass" placeholder="Confirm password">
+            </div>
+
+        </form>
+    </div>
+    <div class="header">
+        <h3>Personal details</h3>
+        <form method="post" class="register-form" id="register-form1">
+            <div>
+                <input type="text" name="name" id="first_name" placeholder="First name">
+                <input type="text" name="name" id="last_name" placeholder="Last name">
+            </div>
+            <div>
+                <select name="gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                </select>
+                <input type="date" name="birthday" id="userBirthday">
+            </div>
+        </form>
+    </div>
+</div>
+    <div class="footer">
+        <div>
+            <input type="checkbox" name="news" id="news">
+            <label for="news">
+                I want to receive news and special offers
+            </label>
+        </div>
+        <div>
+            <input type="checkbox" name="agree" id="agree">
+            <label for="agree">
+                I agree with the Terms and Conditions
+            </label>
+        </div>
+    </div>
+
+
+    <div class="footer">
+        <hr>
+        <input class="submit" type="submit" name="submit" id="submit" value="Submit">
+    </div>
+
+</body>
+</html>

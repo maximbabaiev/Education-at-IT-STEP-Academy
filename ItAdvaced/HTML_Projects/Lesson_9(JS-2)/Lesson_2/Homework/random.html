@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+    <script>
+      let firstArr = []
+      let secondArr = []
+      for (let i = 0; i < 10; i++){
+        firstArr[i] = Math.random() * (40 - 10) + 10;
+        secondArr[i] = Math.random() * (40 - 10) + 10;
+      }
+
+      console.log(firstArr)
+      console.log(secondArr)
+    </script>
+    <script>
+        getArea = (number = prompt(" введите радиус! ")) => {
+            let sum = 0;
+            let ok = false;
+            if (number >= 0) {
+                sum += Math.PI * Math.pow(number, 2);
+                result = "Площа = " + sum + " см^2";
+            } else {
+                result = "должно быть числовое значение.";
+            }
+            return result;
+        };
+        console.log(getArea());
+    </script>
+</body>
+</html>

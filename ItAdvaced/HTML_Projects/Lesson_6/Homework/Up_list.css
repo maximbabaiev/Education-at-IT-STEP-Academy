@@ -1,0 +1,55 @@
+nav{
+    width: 80%;
+}
+.lvl{
+    display: flex;
+    list-style: none;
+
+}
+.lvl1{
+    width: 25%;
+    position: relative;
+}
+a{
+    display: block;
+    background-color: #1f9c2c;
+    color: white;
+    text-align: center;
+    border: 1px solid black;
+    padding: 10px;
+    text-decoration: none;
+
+}
+.lvl2{
+    list-style: none;
+    position: absolute;
+    left: -40px;
+    width: 100%;
+    display: none;
+
+
+}
+.lvl3{
+    position-relative;
+}
+nav ul li:hover .lvl2{
+    display: block;
+}
+
+
+nav ul li:hover > a{
+    background-color: #177320;
+}
+.lvl4{
+    display: none;
+    list-style: none;
+    position: absolute;
+    top: 33%;
+    right: -83%;
+    width: 83%;
+}
+
+.lvl3:hover .lvl4{
+    display: block;
+
+}

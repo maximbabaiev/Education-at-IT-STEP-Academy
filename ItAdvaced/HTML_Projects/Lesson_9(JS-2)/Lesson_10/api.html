@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <style>
+        body {
+            padding: 50px;
+            margin: 0;
+            height: 100%;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #app {
+            width: 800px;
+            max-width: 90%;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            margin-bottom: 50px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+
+
+
+<select id="userSelect" onchange="getSelectedUser(event)">
+    <option value="" disabled selected>Choose your option</option>
+    <option value="1">Option 1</option>
+    <option value="2">Option 2</option>
+    <option value="3">Option 3</option>
+</select>
+
+<label>Materialize Select</label>
+
+<div id="app"></div>
+
+<script>
+    let photos = [];
+    let todos = [];
+
+    function test(e) {
+        console.log(e)
+    }
+
+    fetch('https://jsonplaceholder.typicode.com/photos')
+        .then((response) => {
+            return response.json();
+        })
+        .then((result) => {
+            console.log(result);
+            photos = result;
+
+            generatePostView();
+        })
+
+    fetch('https://jsonplaceholder.typicode.com/todos')
+        .then((response) => {
+            return response.json();
+        })
+        .then((result) => {
+            console.log(result);
+            todos = result;
+
+            generateUserOptions()
+        })
+
+    function generatePostView() {
+        let finaleHtml = '';
+
+        todos.forEach((post) => {
+            finaleHtml += generatePostCard(post);
+        });
+
+        document.getElementById('app').innerHTML = finaleHtml;
+    }
+
+    function generatePostCard(post) {
+        return `<div class="card darken-1">
+        <div class="card-content">
+            <span class="card-title">${post.title}</span>
+            <p>I am a very simple card. I am good at containing small bits of information.
+                I am convenient because I require little markup to use effectively.</p>
+        </div>
+    </div>`;
+    }
+
+    function generateUserOptions() {
+        let htmlForOptions = `<option value="" disabled selected>Choose users</option>`;
+
+        photos.forEach((user) => {
+            htmlForOptions += `<option value="${user.id}">${user.name}</option>`;
+        });
+
+        document.getElementById('userSelect').innerHTML = htmlForOptions;
+
+        let elems = document.querySelectorAll('select');
+        let instances = M.FormSelect.init(elems, {});
+    }
+
+
+    function getSelectedUser(e){
+        console.log(photos.filter((photo) => photo.id == e.target.value)[0])
+    }
+
+</script>
+
+</body>
+
+</html>

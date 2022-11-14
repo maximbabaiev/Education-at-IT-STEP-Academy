@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="2.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+  <form>
+      <div>
+        <ul>
+            <li>
+                <h3>Registration form</h3>
+                <img src="username.png" alt="user">
+                <input class="first" type="text" name="name" id="name" placeholder="Username">
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <img src="email.png" alt="email">
+                <input class="first" type="email" name="email" id="email" placeholder="Email address">
+            </li>
+        </ul>
+        <ul>
+            <li>
+                <img src="pswd.png" alt="user">
+                <input class="pass" type="password" name="pass" id="pass" placeholder="Password">
+                <input class="pass" type="password" name="re_pass" id="re-pass" placeholder="Confirm password">
+            </li>
+        </ul>
+      </div>
+      <div>
+          <ul>
+            <li>
+                <h3>Personal details</h3>
+                <input class="log" type="text" name="name" id="first_name" placeholder="First name">
+                <input class="log" type="text" name="name" id="last_name" placeholder="Last name">
+            </li>
+          </ul>
+          <ul>
+              <li>
+                 <select class="log" name="gender">
+                     <option>Male</option>
+                     <option>Female</option>
+                 </select>
+                <input class="log" type="date" name="birthday" id="userBirthday">
+              </li>
+          </ul>
+      </div>
+      <div>
+          <ul>
+              <li>
+                  <input type="checkbox" name="news" id="news">
+                  <label for="news">I want to receive news and special offers</label>
+              </li>
+          </ul>
+          <ul>
+              <li>
+                  <input type="checkbox" name="agree" id="agree">
+                  <label for="agree">I agree with the Terms and Conditions</label>
+              </li>
+          </ul>
+          <hr>
+      </div>
+      <div>
+        <input class="submit" type="submit" name="submit" id="submit" value="Submit">
+      </div>
+  </form>
+</body>
+</html>

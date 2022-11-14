@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <script>
+
+        let users = [{
+          username: "Piter",
+          company: "Google",
+          age: 20
+        },{
+          username: "David",
+          company: "Amazon",
+          age: 43
+        },{
+          username: "Alex",
+          company: "Facebook",
+          age: 31
+        },{
+          username: "Clark",
+          company: "Google",
+          age: 28
+        },]
+
+      let result = users.filter(function (item) {
+          return item.company === "Google";
+      });
+        console.log(result)
+      let result1 = users.filter(function (item) {
+          return item.age >= 30;
+        });
+      console.log(result1)
+      let result2 = users.unshift({username: "Bob", company: "Twitter", age: 45});
+      let result3 = users.push({username: "Kent", company: "Twitter", age: 37});
+      console.log(users)
+
+
+    </script>
+</body>
+</html>

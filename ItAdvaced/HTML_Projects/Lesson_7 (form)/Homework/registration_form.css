@@ -1,0 +1,14 @@
+.wrap{
+    width: 50%;
+    margin: 0 auto;
+}
+.footer{
+    width:50%;
+    margin: 0 auto;
+}
+.submit{
+    float: right;
+}
+.icon1: before{
+    content: "username.png"
+}

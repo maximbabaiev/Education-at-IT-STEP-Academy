@@ -1,0 +1,22 @@
+ol{
+    background: #db699f;
+
+}
+li{
+    background: #d6458a;
+    margin: 15px;
+    width: 30%
+
+
+}
+span{
+    background: #f00776;
+    margin-left: 50px;
+
+}
+body{
+    width: 50%
+}
+.first{
+    list-style-position: inside
+}

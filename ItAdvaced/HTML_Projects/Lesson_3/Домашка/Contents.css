@@ -1,0 +1,20 @@
+.first{
+    list-style-type: upper-roman;
+
+
+}
+.second{
+    list-style-type: lower-alpha;
+}
+li::marker{
+
+}
+span{
+   font-weight: 400;
+   color: #0299f0;
+   font-size: 15px
+}
+ol{
+    font-weight: 800;
+    font-size: 20px;
+}

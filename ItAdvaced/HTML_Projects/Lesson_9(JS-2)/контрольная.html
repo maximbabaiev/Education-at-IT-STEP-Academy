@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Javascript</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"/>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8"
+            crossorigin="anonymous"></script>
+
+    <style>
+        h1 {
+            margin: 50px 0 30px 1%;
+        }
+
+        .btns {
+            display: flex;
+            align-items: center;
+            margin: 0 0 30px 1%;
+        }
+
+        .btns .btn {
+            margin-right: 10px;
+        }
+
+        #userList {
+            display: flex;
+            justify-content: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: 23%;
+            margin: 0 1% 30px;
+        }
+
+        .card-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        button.btn {
+            display: flex;
+        }
+
+        .form-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>User Admin</h1>
+
+    <div class="btns">
+        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <span class="material-symbols-outlined">
+                add
+            </span>
+            Add
+        </button>
+
+        <button class="btn btn-secondary">
+             <span class="material-symbols-outlined">
+                sort
+            </span>
+            Sort A-Z
+        </button>
+
+        <button class="btn btn-secondary">
+            <span class="material-symbols-outlined">
+                sort
+            </span>
+            Sort By Id
+        </button>
+    </div>
+
+    <div id="userList">
+        <div class="card">
+            <div class="card-body">
+                <div class="card-title">
+                    <h3>User Name</h3>
+
+                    <button class="btn btn-danger btn-sm">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
+                    </button>
+                </div>
+
+                <p class="card-text user-card">
+                    <span>user companyname</span>
+                    <span>user email</span>
+                    <span>user phone</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add New User</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <div class="modal-body">
+                <div class="mb-2">
+                    <label for="usernameFormControlInput1" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="usernameFormControlInput1" placeholder="Enter Username">
+                </div>
+
+                <div class="mb-2">
+                    <label for="emailFormControlInput" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="emailFormControlInput" placeholder="Enter Email">
+                </div>
+
+                <div class="mb-2">
+                    <label for="phoneFormControlInput" class="form-label">Phone</label>
+                    <input type="text" class="form-control" id="phoneFormControlInput" placeholder="Enter Phone">
+                </div>
+
+                <div class="mb-5">
+                    <label for="companyFormControlInput" class="form-label">Company</label>
+                    <input type="text" class="form-control" id="companyFormControlInput" placeholder="Enter Company">
+                </div>
+
+                <div class="form-btn">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">
+                        <span class="material-symbols-outlined">
+                            close
+                        </span>
+                        Cancel
+                    </button>
+
+                    <button type="submit" class="btn btn-success" data-bs-dismiss="modal">
+                        <span class="material-symbols-outlined">
+                            check
+                        </span>
+                        Create
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+</script>
+
+</body>
+</html>

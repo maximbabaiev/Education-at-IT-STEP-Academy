@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+  <script>
+      let distance = prompt("Введите расстояние");
+      let speed = prompt("Введите среднюю скорость");
+
+      let timeInWay = distance/speed;
+
+      let timeInRest = (timeInWay%4 === 0)? (timeInWay/4 | 0) - 1: timeInWay/4| 0;
+
+      let timeTotal = distance/speed + timeInRest;
+
+      alert(`Общее время в пути  = ${timeTotal} часов`);
+  </script>
+</body>
+</html>

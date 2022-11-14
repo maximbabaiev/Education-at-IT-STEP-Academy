@@ -1,0 +1,38 @@
+img{
+    vertical-align: middle;
+    width: 15px;
+}
+ul{
+    list-style: none;
+}
+hr{
+    width: 50%;
+    float: left;
+}
+.first{
+    border: none;
+    border-bottom: 1px solid #999
+}
+.pass{
+    border: none;
+    border-bottom: 1px solid #999;
+}
+
+.log{
+    border: none;
+    border-bottom: 1px solid #999
+}
+.submit{
+    position: relative;
+    top: 20px;
+    right: 130px;
+    display: inline-block;
+    padding: 15px 39px;
+    background-color: #4872c2;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+}
+form{
+
+}
