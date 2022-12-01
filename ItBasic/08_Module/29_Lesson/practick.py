@@ -105,45 +105,43 @@ from easygui import *
 
 # Task 5
 
-
-
-try:
-    service = Service(
-        r"C:\Users\AdminP\PycharmProjects\ItStep\GIT\Education-at-IT-STEP-Academy\ItBasic\08_Module\29_Lesson\chromedriver.exe")
-    driver = webdriver.Chrome(service=service)
-    wait = WebDriverWait(driver, 10)
-    driver.get(url="https://lardi-trans.ua/ru/gruz/")
-    wait.until(EC.presence_of_element_located((By.ID, 'react-select-4-input')))
-    where_city = driver.find_element(By.ID, 'react-select-4-input')
-    while True:
-        button = buttonbox("Что хотите сделать", "Грузы", ["Взять", "Отмена"])
-        if button == "Взять":
-            choice = enterbox("Укажите город загрузки")
-            where_city.send_keys(f"{choice}")
-            time.sleep(1)
-            where_city.send_keys(Keys.ENTER)
-            wait.until(
-                EC.element_to_be_clickable((By.XPATH, '//*[@id="proposal-search"]/div/div/div[3]/div[2]/button')))
-            driver.find_element(By.XPATH, '//*[@id="proposal-search"]/div/div/div[3]/div[2]/button').click()
-            wait.until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="search-results"]/div/div[1]/div[3]')))
-            result = driver.find_elements(By.XPATH, '//*[@id="search-results"]/div/div[1]/div[3]')
-            for el in result:
-                print(el.text)
-            time.sleep(2)
-            # button_price = buttonbox("Что хотите сделать", "Цена", ["Узнать цену и тип груза"])
-            # if button_price == "Узнать цену и тип груза":
-            #     wait.until(EC.presence_of_all_elements_located(
-            #         (By.XPATH, '//*[@id="search-results"]/div/div[1]/div[3]/div[1]/div[2]/div[1]/div[4]')))
-            #     result_price = driver.find_elements(By.XPATH,
-            #                                         '//*[@id="search-results"]/div/div[1]/div[3]/div[1]/div[2]/div[1]/div[4]')
-            #     for i in result_price:
-            #         print(i.text)
-        elif button == "Отмена":
-            break
-        else:
-            break
-except Exception as ex:
-    print(ex)
-
-finally:
-    driver.close()
+# try:
+#     service = Service(
+#         r"C:\Users\AdminP\PycharmProjects\ItStep\GIT\Education-at-IT-STEP-Academy\ItBasic\08_Module\29_Lesson\chromedriver.exe")
+#     driver = webdriver.Chrome(service=service)
+#     wait = WebDriverWait(driver, 10)
+#     driver.get(url="https://lardi-trans.ua/ru/gruz/")
+#     wait.until(EC.presence_of_element_located((By.ID, 'react-select-4-input')))
+#     where_city = driver.find_element(By.ID, 'react-select-4-input')
+#     while True:
+#         button = buttonbox("Что хотите сделать", "Грузы", ["Взять", "Отмена"])
+#         if button == "Взять":
+#             choice = enterbox("Укажите город загрузки")
+#             where_city.send_keys(f"{choice}")
+#             time.sleep(1)
+#             where_city.send_keys(Keys.ENTER)
+#             wait.until(
+#                 EC.element_to_be_clickable((By.XPATH, '//*[@id="proposal-search"]/div/div/div[3]/div[2]/button')))
+#             driver.find_element(By.XPATH, '//*[@id="proposal-search"]/div/div/div[3]/div[2]/button').click()
+#             wait.until(EC.presence_of_all_elements_located((By.XPATH, '//*[@id="search-results"]/div/div[1]/div[3]')))
+#             result = driver.find_elements(By.XPATH, '//*[@id="search-results"]/div/div[1]/div[3]')
+#             for el in result:
+#                 print(el.text)
+#             time.sleep(2)
+#             button_price = buttonbox("Что хотите сделать", "Цена", ["Узнать цену и тип груза"])
+#             if button_price == "Узнать цену и тип груза":
+#                 wait.until(EC.presence_of_all_elements_located(
+#                     (By.XPATH, '//*[@id="search-results"]/div/div[1]/div[3]/div[1]/div[2]/div[1]/div[4]')))
+#                 result_price = driver.find_elements(By.XPATH,
+#                                                     '//*[@id="search-results"]/div/div[1]/div[3]/div[1]/div[2]/div[1]/div[4]')
+#                 for i in result_price:
+#                     print(i.text)
+#         elif button == "Отмена":
+#             break
+#         else:
+#             break
+# except Exception as ex:
+#     print(ex)
+#
+# finally:
+#     driver.close()
